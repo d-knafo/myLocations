@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 import { editCategory } from '../../redux/actions/categories'
 
 class EditCategory extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const id = parseInt(this.props.match.params.id)
     const initObj = this.props.categories.find(e => e.id === id)
 

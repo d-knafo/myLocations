@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { editLocation } from '../../redux/actions/locations'
 
 class EditLocation extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const id = parseInt(this.props.match.params.id)
     const initObj = this.props.locations.find(e => e.id === id)
     this.setState({

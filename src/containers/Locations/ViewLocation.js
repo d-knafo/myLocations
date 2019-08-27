@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import Map from './Map'
 
 class ViewLocation extends Component {
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     if ("vibrate" in navigator) {
   	// vibration API supported
       navigator.vibrate(1000);
