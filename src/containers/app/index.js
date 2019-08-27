@@ -5,7 +5,7 @@ import { FaList, FaMap } from 'react-icons/fa'
 
 const App = () => (
   <div>
-    
+
     <nav className='navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark'>
       <Link className='navbar-brand' to='/'> myLocations </Link>
       <button
@@ -29,13 +29,13 @@ const App = () => (
           <li className='nav-item'>
             <Link className='nav-link' to='/categories'>
               <FaList />
-              Categories
+              &nbsp; Categories
             </Link>
           </li>
           <li className='nav-item'>
             <Link className='nav-link' to='/locations'>
               <FaMap />
-              Locations
+              &nbsp; Locations
             </Link>
           </li>
         </ul>
