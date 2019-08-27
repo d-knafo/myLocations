@@ -18,7 +18,7 @@ class RowCategory extends Component {
     return (
       <li key={category.id} className='list-group-item'>
         {category.name}
-        <div className='btn-group' role='group' aria-label='Basic example'>
+        <div className='btn-group float-right' role='group' aria-label='Basic example'>
           <Link
             className='btn btn-secondary'
             to={'/category/' + category.id + '/edit/'}
