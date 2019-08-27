@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { deleteCategory } from '../../redux/actions/categories'
@@ -7,10 +6,7 @@ import RowCategory from './RowCategory'
 import AddCategory from './AddCategory'
 
 class Categories extends Component {
-  constructor () {
-    super()
-  }
-
+  
   onDelete (id) {
     this.props.deleteCategory(id)
   }
@@ -28,7 +24,7 @@ class Categories extends Component {
             <ul className='list-group'>
               {
                 this.props.categories.map(category => (
-                  <RowCategory category={category} />
+                  <RowCategory category={category} key={category.id}/>
                 ))
               }
             </ul>

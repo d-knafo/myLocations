@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import GoogleMapReact from 'google-map-react'
 import Map from './Map'
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>
 
 class ViewLocation extends Component {
   componentWillMount () {
@@ -12,9 +9,9 @@ class ViewLocation extends Component {
   	// vibration API supported
       navigator.vibrate(1000);
     }
-    
-    const id = this.props.match.params.id
-    const initObj = this.props.locations.find(e => e.id == id)
+
+    const id =  parseInt(this.props.match.params.id)
+    const initObj = this.props.locations.find(e => e.id === id)
     this.setState({
       name: initObj.name,
       address: initObj.address,

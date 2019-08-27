@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { addLocation } from '../../redux/actions/locations'
 
 class AddLocation extends Component {
   constructor () {
     super()
-    this.setState({
+    this.state = {
       name: '',
       address: '',
       coordinates_lat: '',
       coordinates_lng: '',
       categoryId: ''
-    })
+    }
   }
 
   onNameChange (value, field) {
@@ -20,17 +22,27 @@ class AddLocation extends Component {
   }
 
   onAdd () {
-    if (this.state.name) {
+    if (this.state.name && this.state.address && this.state.coordinates_lat && this.state.coordinates_lng &&  this.state.categoryId) {
       this.props.addLocation({
         name: this.state.name,
         address: this.state.address,
-        coordinates: this.state.coordinates,
-        categoryId: this.state.categoryId
+        coordinates_lat: this.state.coordinates_lat,
+        coordinates_lng: this.state.coordinates_lng,
+        categoryId: parseInt(this.state.categoryId)
       })
+      this.notifySuccess()
     } else {
-      alert('Must fill input')
+      this.notifyError()
     }
   }
+
+  notifyError = () => toast.error("All fields required!", {
+    position: toast.POSITION.TOP_RIGHT
+  })
+
+  notifySuccess = () => toast.success("New Locations been created", {
+    position: toast.POSITION.TOP_RIGHT
+  })
 
   render () {
     return (
@@ -43,9 +55,6 @@ class AddLocation extends Component {
                 className='form-control'
                 onChange={e => this.onNameChange(e.target.value, 'name')}
               />
-              <small id='emailHelp' className='form-text text-muted'>
-                We'll never share your email with anyone else.
-              </small>
             </div>
             <div className='form-group'>
               <label> Address</label>

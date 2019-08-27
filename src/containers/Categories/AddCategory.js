@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addCategory } from '../../redux/actions/categories'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+ import { addCategory } from '../../redux/actions/categories'
 
 class AddCategory extends Component {
   constructor () {
     super()
-    this.setState({ name: '' })
+    this.state = {
+      name: '',
+    }
   }
 
   onNameChange (value) {
@@ -14,18 +19,27 @@ class AddCategory extends Component {
   }
 
   onAdd () {
-    if (this.state.name != '') {
+    if (this.state.name) {
       this.props.addCategory(this.state.name)
+      this.notifySuccess()
     } else {
-      alert('Must fill input')
+      this.notifyError()
     }
   }
+
+  notifyError = () => toast.error("All fields required!", {
+    position: toast.POSITION.TOP_RIGHT
+  })
+
+  notifySuccess = () => toast.success("New Locations been created", {
+    position: toast.POSITION.TOP_RIGHT
+  })
 
   render () {
     return (
       <li className='list-group-item'>
-        <div class='row'>
-          <div class='col-6'>
+        <div className='row'>
+          <div className='col-6'>
             <input
               type='text'
               className='form-control'

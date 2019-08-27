@@ -2,16 +2,30 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { deleteCategory } from '../../redux/actions/categories'
 
 class RowCategory extends Component {
-  constructor () {
-    super()
-  }
 
   onDelete (id) {
-    this.props.deleteCategory(id)
+    let canDelete = true
+    this.props.locations.map(c => {
+      if(c.categoryId === id) {
+        canDelete = false
+        return
+      }
+    })
+    if(canDelete){
+      return this.props.deleteCategory(id)
+    }
+    return  this.notifyError()
   }
+
+  notifyError = () => toast.error("This category used, please remove first the location!", {
+    position: toast.POSITION.TOP_RIGHT
+  })
+
 
   render () {
     const category = this.props.category
@@ -38,8 +52,10 @@ class RowCategory extends Component {
   }
 }
 
-const mapStateToProps = ({ categories }) => ({})
-
+const mapStateToProps = state => ({
+  categories: state.categories.categories,
+  locations: state.locations.locations
+})
 const mapDispatchToProps = (dispatch, myProps) =>
   bindActionCreators({ deleteCategory }, dispatch)
 

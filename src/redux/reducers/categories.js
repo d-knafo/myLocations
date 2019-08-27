@@ -19,14 +19,14 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case EDIT_CATEGORY:
       foundIndex = state.categories.findIndex(
-        category => category.id == action.payload.id
+        category => category.id === action.payload.id
       )
       newCategoriesArr[foundIndex].name = action.payload.name
       return { ...state, categories: newCategoriesArr }
 
     case DELETE_CATEGORY:
       foundIndex = state.categories.findIndex(
-        category => category.id == action.payload
+        category => category.id === action.payload
       )
       delete newCategoriesArr[foundIndex]
       let organize = []
