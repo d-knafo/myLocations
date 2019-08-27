@@ -1,8 +1,8 @@
 {
   "private": true,
-  "homepage": "https://create-react-app-redux.now.sh",
+  "homepage": "https://github.com/d-knafo/myLocations",
   "scripts": {
-    "deploy": "now && now alias",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "now-start": "serve -s ./build",
     "build": "react-scripts build",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "connected-react-router": "4.5.0",
+    "gh-pages": "^2.1.1",
     "google-map-react": "^1.1.4",
     "react": "16.9.0",
     "react-dom": "16.9.0",

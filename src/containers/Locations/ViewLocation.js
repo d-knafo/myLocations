@@ -8,6 +8,11 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>
 
 class ViewLocation extends Component {
   componentWillMount () {
+    if ("vibrate" in navigator) {
+  	// vibration API supported
+      navigator.vibrate(1000);
+    }
+    
     const id = this.props.match.params.id
     const initObj = this.props.locations.find(e => e.id == id)
     this.setState({
