@@ -5,6 +5,7 @@ export const editLocation = data => {
     dispatch({
       type: EDIT_LOCATION,
       payload: {
+        id: data.id,
         name: data.name,
         address: data.address,
         coordinates_lat: data.coordinates_lat,

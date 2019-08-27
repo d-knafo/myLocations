@@ -67,9 +67,7 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
     case EDIT_LOCATION:
-      foundIndex = state.locations.findIndex(
-        location => location.id == action.payload.id
-      )
+      const foundIndex = state.locations.findIndex(location => location.id ===  action.payload.id);
       newLocationsArr[foundIndex] = action.payload
       return { ...state, locations: newLocationsArr }
     case DELETE_LOCATION:

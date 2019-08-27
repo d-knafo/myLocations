@@ -9,7 +9,8 @@ class AddLocation extends Component {
     this.setState({
       name: '',
       address: '',
-      coordinates: '',
+      coordinates_lat: '',
+      coordinates_lng: '',
       categoryId: ''
     })
   }
@@ -55,11 +56,19 @@ class AddLocation extends Component {
               />
             </div>
             <div className='form-group'>
-              <label> Coordinates</label>
+              <label> Coordinates Latitude</label>
               <input
                 type='text'
                 className='form-control'
-                onChange={e => this.onNameChange(e.target.value, 'coordinates')}
+                onChange={e => this.onNameChange(e.target.value, 'coordinates_lat')}
+              />
+            </div>
+            <div className='form-group'>
+              <label> Coordinates Longitude</label>
+              <input
+                type='text'
+                className='form-control'
+                onChange={e => this.onNameChange(e.target.value, 'coordinates_lng')}
               />
             </div>
             <div className='form-group'>

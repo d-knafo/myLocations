@@ -8,7 +8,8 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>
 
 class ViewLocation extends Component {
   componentWillMount () {
-    const initObj = this.props.locations[this.props.match.params.id]
+    const id = this.props.match.params.id
+    const initObj = this.props.locations.find(e => e.id == id)
     this.setState({
       name: initObj.name,
       address: initObj.address,

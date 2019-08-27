@@ -1,22 +1,26 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import {BrowserRouter as Router}  from 'react-router-dom';
-import store from './redux/store'
+import { BrowserRouter as Router } from 'react-router-dom'
+import configureStore from './redux/store'
 import App from './containers/app'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import 'sanitize.css/sanitize.css'
 import './index.css'
+let { store, persistor } = configureStore()
 
 const target = document.querySelector('#root')
 
 render(
   <Provider store={store}>
-    <Router>
-      <div>
-        <App />
-      </div>
-    </Router>
+    <PersistGate loading={null} persistor={persistor}>
+      <Router>
+        <div>
+          <App />
+        </div>
+      </Router>
+    </PersistGate>
   </Provider>,
   target
 )

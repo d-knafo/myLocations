@@ -15,12 +15,19 @@ class RowLocations extends Component {
 
   render () {
     const location = this.props.location
-    const category = this.props.categories.find( e => e.id == location.categoryId );
+    const category = this.props.categories.find(
+      e => e.id == location.categoryId
+    )
     return (
       <li key={location.id} className='list-group-item'>
         Name: {location.name} <br />
         Address: {location.address} <br />
-        Coordinates: Latitude: {location.coordinates_lat},  Longitude: {location.coordinates_lng} <br />
+        Coordinates: Latitude:{' '}
+        {location.coordinates_lat}
+        ,  Longitude:{' '}
+        {location.coordinates_lng}
+        {' '}
+        <br />
         CategoryId: {category.name} <br />
         <div className='btn-group' role='group' aria-label='Basic example'>
           <Link
@@ -48,9 +55,7 @@ class RowLocations extends Component {
   }
 }
 
-const mapStateToProps = ( state ) => ({
-  categories: state.categories.categories,
-})
+const mapStateToProps = state => ({ categories: state.categories.categories })
 
 const mapDispatchToProps = (dispatch, myProps) =>
   bindActionCreators({ deleteLocation }, dispatch)
