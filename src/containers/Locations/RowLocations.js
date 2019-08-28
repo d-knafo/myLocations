@@ -19,7 +19,7 @@ class RowLocations extends Component {
   render () {
     const { location, categories } = this.props
     const FilterCategory = this.props.FilterCategory
-    if ( isNaN(FilterCategory) || FilterCategory !== 'all' && location.categoryId.includes(FilterCategory) ) {
+    if ( isNaN(FilterCategory) || (FilterCategory !== 'all' && location.categoryId.includes(FilterCategory)) ) {
       return (
         <li key={location.id} className='list-group-item'>
           Name: {location.name} <br />
