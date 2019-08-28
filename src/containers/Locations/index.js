@@ -3,15 +3,34 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import RowLocations from './RowLocations'
+import { FaSortAlphaDown, FaSortAlphaUp } from 'react-icons/fa'
 
 class Locations extends Component {
-  constructor () {
-    super()
-    this.state = { filterCategory: 'all' }
+  constructor (props) {
+    super(props)
+    this.state = { filterCategory: 'all', locations: this.props.locations }
   }
 
   onFilterCategory (categoryId) {
     this.setState({ filterCategory: parseInt(categoryId) })
+  }
+
+  componentWillReceiveProps (props) {
+    this.setState({ locations: props.locations })
+  }
+
+  sortAscByName () {
+    const locationsSorted = this.props.locations.sort(
+      (a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    )
+    this.setState({ locations: locationsSorted })
+  }
+
+  sortDescByName () {
+    const locationsSorted = this.props.locations.sort(
+      (a, b) => a.name < b.name ? 1 : b.name < a.name ? -1 : 0
+    )
+    this.setState({ locations: locationsSorted })
   }
 
   render () {
@@ -34,9 +53,31 @@ class Locations extends Component {
             <form>
               <div className='form-row'>
                 <div className='col'>
-                  Filter by category
+                  Sort <br />
+                  <div
+                    class='btn-group btn-group-sm'
+                    role='group'
+                    aria-label='Basic example'
+                  >
+                    <button
+                      type='button'
+                      class='btn btn-primary'
+                      onClick={this.sortAscByName.bind(this)}
+                    >
+                      <FaSortAlphaDown />
+                    </button>
+                    <button
+                      type='button'
+                      class='btn btn-primary'
+                      onClick={this.sortDescByName.bind(this)}
+                    >
+                      <FaSortAlphaUp />
+                    </button>
+                  </div>
                 </div>
                 <div className='col'>
+                  Filter by category
+
                   <select
                     className='form-control'
                     onChange={e => this.onFilterCategory(e.target.value)}
@@ -53,6 +94,7 @@ class Locations extends Component {
                   </select>
                 </div>
               </div>
+
             </form>
           </div>
         </div>
@@ -60,7 +102,7 @@ class Locations extends Component {
           <div className='card-body'>
             <ul className='list-group'>
               {
-                this.props.locations.map(location => (
+                this.state.locations.map(location => (
                   <RowLocations
                     location={location}
                     key={location.id}

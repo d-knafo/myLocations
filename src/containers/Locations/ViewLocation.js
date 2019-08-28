@@ -113,10 +113,9 @@ class ViewLocation extends Component {
               </div>
               <div className='col-6'>
                 <Map
-                  coordinates={{
-                    lat: this.state.coordinates_lat,
-                    lng: this.state.coordinates_lng
-                  }}
+                  lat={this.state.coordinates_lat}
+                  lng={this.state.coordinates_lng}
+                  name={this.state.name}
                 />
               </div>
             </div>

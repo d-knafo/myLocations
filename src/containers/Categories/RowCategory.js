@@ -11,7 +11,7 @@ class RowCategory extends Component {
   onDelete (id) {
     let canDelete = true
     this.props.locations.map(c => {
-      if(c.categoryId === id) {
+      if(c.categoryId.includes(id)) {
          canDelete = false
       }
       return canDelete

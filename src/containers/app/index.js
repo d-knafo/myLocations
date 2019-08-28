@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import ReactRouter from './../../router/router'
 import { FaList, FaMap } from 'react-icons/fa'
 
+const resetApp = () => {
+  localStorage.clear()
+  window.location.reload()
+}
 const App = () => (
   <div>
     <nav className='navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark'>
@@ -23,15 +27,16 @@ const App = () => (
           <li className='nav-item'>
             <Link className='nav-link' to='/categories'>
               <FaList />
-              Categories
+              &nbsp; Categories
             </Link>
           </li>
           <li className='nav-item'>
             <Link className='nav-link' to='/locations'>
               <FaMap />
-              Locations
+              &nbsp; Locations
             </Link>
           </li>
+          <button type="button" class="btn btn-danger btn-xs" style={{ right:50, position: 'absolute' }} onClick={ resetApp }>Reset app</button>
         </ul>
       </div>
     </nav>

@@ -55,6 +55,7 @@ class AddLocation extends Component {
   render () {
     return (
       <div>
+        
           <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
             <span className="navbar-text">
               Manage your Locations &nbsp;

@@ -2,13 +2,13 @@ import { EDIT_CATEGORY, DELETE_CATEGORY, ADD_CATEGORY } from './../const'
 
 const initialState = {
   categories: [
-    { id: 0, name: 'category 1 ' },
-    { id: 1, name: 'category 2 ' },
-    { id: 2, name: 'category 3 ' },
-    { id: 3, name: 'category 4 ' },
-    { id: 4, name: 'category 5 ' },
-    { id: 5, name: 'category 6 ' },
-    { id: 6, name: 'category 7 ' }
+    { id: 0, name: 'Home' },
+    { id: 1, name: 'Work' },
+    { id: 2, name: 'Parents' },
+    { id: 3, name: 'School' },
+    { id: 4, name: 'Backery' },
+    { id: 5, name: 'Grocery' },
+    { id: 6, name: 'Shoe Store' }
   ]
 }
 

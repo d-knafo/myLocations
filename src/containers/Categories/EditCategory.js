@@ -73,9 +73,6 @@ class EditCategory extends Component {
                 value={this.state.name}
               />
             </div>
-            <button className="btn btn-primary" onClick={this.onSave.bind(this)}>
-              Save
-            </button>
           </div>
         </div>
 
