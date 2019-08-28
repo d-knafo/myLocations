@@ -55,18 +55,17 @@ class AddLocation extends Component {
   render () {
     return (
       <div>
-
           <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
             <span className="navbar-text">
               Manage your Locations &nbsp;
             </span>
             <ul className="nav navbar-nav ml-auto">
               <li className="nav-item">
+                <button className='btn btn-warning mr-2' onClick={this.props.history.goBack}>
+                  Back
+                </button>
                 <button className='btn btn-success' onClick={this.onAdd.bind(this)}>
                   Add Location
-                </button>
-                <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
-                  Back
                 </button>
               </li>
             </ul>
@@ -119,7 +118,6 @@ class AddLocation extends Component {
                 </div>
             </div>
           </div>
-
         </div>
     )
   }

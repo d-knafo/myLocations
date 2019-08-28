@@ -52,11 +52,11 @@ class EditCategory extends Component {
           </span>
           <ul className="nav navbar-nav ml-auto">
             <li className="nav-item">
+              <button className='btn btn-warning mr-2' onClick={this.props.history.goBack}>
+                Back
+              </button>
               <button className='btn btn-success' onClick={this.onSave.bind(this)}>
                 Save
-              </button>
-              <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
-                Back
               </button>
             </li>
           </ul>
@@ -80,7 +80,6 @@ class EditCategory extends Component {
         </div>
 
       </div>
-
     )
   }
 }

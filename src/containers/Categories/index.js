@@ -6,7 +6,6 @@ import { deleteCategory } from '../../redux/actions/categories'
 import RowCategory from './RowCategory'
 
 class Categories extends Component {
-
   onDelete (id) {
     this.props.deleteCategory(id)
   }
@@ -14,36 +13,29 @@ class Categories extends Component {
   render () {
     return (
       <div>
-
-        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-          <span className="navbar-text">
-            Manage your Categories &nbsp;
+        <nav className='navbar navbar-expand-sm bg-dark navbar-dark'>
+          <span className='navbar-text'>
+            Manage your Categories
           </span>
-          <ul className="nav navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link
-                className='btn btn-success'
-                to='/category/new/'
-              >
-              Add new
-            </Link>
+          <ul className='nav navbar-nav ml-auto'>
+            <li className='nav-item'>
+              <Link className='btn btn-primary' to='/category/new/'>
+                Add new
+              </Link>
             </li>
           </ul>
         </nav>
-
-        <div className='row'>
-          <div className='col-sm'>
-            <h1> My Categories </h1>
+        <div className='card'>
+          <div className='card-body'>
             <ul className='list-group'>
               {
                 this.props.categories.map(category => (
-                  <RowCategory category={category} key={category.id}/>
+                  <RowCategory category={category} key={category.id} />
                 ))
               }
             </ul>
           </div>
         </div>
-        <ul />
       </div>
     )
   }

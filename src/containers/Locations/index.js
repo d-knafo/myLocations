@@ -17,27 +17,20 @@ class Locations extends Component {
   render () {
     return (
       <div>
-
-        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-          <span className="navbar-text">
-            Manage your Locations &nbsp;
+        <nav className='navbar navbar-expand-sm bg-dark navbar-dark'>
+          <span className='navbar-text'>
+            Manage your Locations
           </span>
-          <ul className="nav navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link
-                className='btn btn-success'
-                to='/location/new/'
-              >
-              Add new
-            </Link>
+          <ul className='nav navbar-nav ml-auto'>
+            <li className='nav-item'>
+              <Link className='btn btn-primary' to='/location/new/'>
+                Add new
+              </Link>
             </li>
           </ul>
         </nav>
-
-
-        <div className='row'>
-          <div className='col-sm'>
-            <h1> My Locations </h1>
+        <div class='card'>
+          <div class='card-body'>
             <form>
               <div className='form-row'>
                 <div className='col'>
@@ -61,6 +54,10 @@ class Locations extends Component {
                 </div>
               </div>
             </form>
+          </div>
+        </div>
+        <div className='card'>
+          <div className='card-body'>
             <ul className='list-group'>
               {
                 this.props.locations.map(location => (
@@ -74,7 +71,6 @@ class Locations extends Component {
             </ul>
           </div>
         </div>
-        <ul />
       </div>
     )
   }

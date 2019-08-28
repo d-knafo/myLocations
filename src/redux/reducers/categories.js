@@ -34,7 +34,10 @@ export default (state = initialState, action) => {
       return { ...state, categories: organize }
 
     case ADD_CATEGORY:
-      newCategoriesArr.push({ id: newCategoriesArr.slice(-1).pop().id + 1, name: action.payload })
+      newCategoriesArr.push({
+        id: newCategoriesArr.slice(-1).pop().id + 1,
+        name: action.payload
+      })
       return { ...state, categories: newCategoriesArr }
 
     default:

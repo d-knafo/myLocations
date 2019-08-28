@@ -2,7 +2,10 @@ import { EDIT_CATEGORY, DELETE_CATEGORY, ADD_CATEGORY } from './../const'
 
 export const editCategory = data => {
   return dispatch => {
-    dispatch({ type: EDIT_CATEGORY, payload: { id: data.id, name: data.name } })
+    dispatch({
+      type: EDIT_CATEGORY,
+      payload: { id: data.id, name: data.name }
+    })
   }
 }
 

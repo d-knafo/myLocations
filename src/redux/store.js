@@ -3,8 +3,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/index'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-
-// defaults to localStorage for web
+// defaults to localStorage
 const initialState = {}
 const enhancers = []
 const middleware = [ thunk ]
@@ -22,12 +21,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers)
-//
-// export default createStore(
-//   rootReducer,
-//   initialState,
-//   composedEnhancers
-// )
 
 export default () => {
   let store = createStore(persistedReducer, initialState, composedEnhancers)

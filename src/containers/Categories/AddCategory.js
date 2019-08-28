@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
- import { addCategory } from '../../redux/actions/categories'
+import { addCategory } from '../../redux/actions/categories'
 
 class AddCategory extends Component {
   constructor () {
@@ -41,15 +40,15 @@ class AddCategory extends Component {
       <div>
           <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
             <span className="navbar-text">
-              Manage your categories &nbsp;
+              Add new category &nbsp;
             </span>
             <ul className="nav navbar-nav ml-auto">
               <li className="nav-item">
+                <button className='btn btn-warning mr-2' onClick={this.props.history.goBack}>
+                  Back
+                </button>
                 <button className='btn btn-success' onClick={this.onAdd.bind(this)}>
                   Add Category
-                </button>
-                <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
-                  Back
                 </button>
               </li>
             </ul>
