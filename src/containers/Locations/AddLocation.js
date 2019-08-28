@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Select from 'react-select';
 import { addLocation } from '../../redux/actions/locations'
 
 class AddLocation extends Component {
@@ -13,9 +14,16 @@ class AddLocation extends Component {
       address: '',
       coordinates_lat: '',
       coordinates_lng: '',
-      categoryId: ''
+      categoryId: '',
+      selectedOption: null,
     }
   }
+
+  onChangeCategories = selectedOption => {
+     this.setState({ selectedOption });
+     let ids = selectedOption.map(o => o.id)
+     this.setState({categoryId: ids})
+   };
 
   onNameChange (value, field) {
     this.setState({ [field]: value })
@@ -28,7 +36,7 @@ class AddLocation extends Component {
         address: this.state.address,
         coordinates_lat: this.state.coordinates_lat,
         coordinates_lng: this.state.coordinates_lng,
-        categoryId: parseInt(this.state.categoryId)
+        categoryId: this.state.categoryId
       })
       this.notifySuccess()
     } else {
@@ -46,59 +54,73 @@ class AddLocation extends Component {
 
   render () {
     return (
-      <div className='card'>
-        <div className='card-body'>
-            <div className='form-group'>
-              <label>Name</label>
-              <input
-                type='text'
-                className='form-control'
-                onChange={e => this.onNameChange(e.target.value, 'name')}
-              />
+      <div>
+
+          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+            <span className="navbar-text">
+              Manage your Locations &nbsp;
+            </span>
+            <ul className="nav navbar-nav ml-auto">
+              <li className="nav-item">
+                <button className='btn btn-success' onClick={this.onAdd.bind(this)}>
+                  Add Location
+                </button>
+                <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
+                  Back
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <div className='card'>
+            <div className='card-body'>
+                <div className='form-group'>
+                  <label>Name</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    onChange={e => this.onNameChange(e.target.value, 'name')}
+                  />
+                </div>
+                <div className='form-group'>
+                  <label> Address</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    onChange={e => this.onNameChange(e.target.value, 'address')}
+                  />
+                </div>
+                <div className='form-group'>
+                  <label> Coordinates Latitude</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    onChange={e => this.onNameChange(e.target.value, 'coordinates_lat')}
+                  />
+                </div>
+                <div className='form-group'>
+                  <label> Coordinates Longitude</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    onChange={e => this.onNameChange(e.target.value, 'coordinates_lng')}
+                  />
+                </div>
+                <div className='form-group'>
+                   <label> Category v2 </label>
+                     <Select
+                       value={this.state.selectedOption}
+                       onChange={this.onChangeCategories}
+                       options={this.props.categories}
+                       isMulti={true}
+                       getOptionValue={option => option.id}
+                       getOptionLabel={option => option.name}
+                     />
+                </div>
             </div>
-            <div className='form-group'>
-              <label> Address</label>
-              <input
-                type='text'
-                className='form-control'
-                onChange={e => this.onNameChange(e.target.value, 'address')}
-              />
-            </div>
-            <div className='form-group'>
-              <label> Coordinates Latitude</label>
-              <input
-                type='text'
-                className='form-control'
-                onChange={e => this.onNameChange(e.target.value, 'coordinates_lat')}
-              />
-            </div>
-            <div className='form-group'>
-              <label> Coordinates Longitude</label>
-              <input
-                type='text'
-                className='form-control'
-                onChange={e => this.onNameChange(e.target.value, 'coordinates_lng')}
-              />
-            </div>
-            <div className='form-group'>
-              <label> Category </label>
-              <select
-                className='form-control'
-                onChange={e => this.onNameChange(e.target.value, 'categoryId')}
-              >
-                <option value=""> Choose category </option>
-                {
-                  this.props.categories.map(category => (
-                    <option value={category.id} key={category.id}> {category.name} </option>
-                  ))
-                }
-              </select>
-            </div>
-            <button className='btn btn-success' onClick={this.onAdd.bind(this)}>
-              Add category
-            </button>
+          </div>
+
         </div>
-      </div>
     )
   }
 }

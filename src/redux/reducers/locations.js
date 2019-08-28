@@ -8,7 +8,7 @@ const initialState = {
       address: 'address 1',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 0
+      categoryId: [0, 1]
     },
     {
       id: 1,
@@ -16,7 +16,7 @@ const initialState = {
       address: 'address 2',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 1
+      categoryId: [1, 1]
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const initialState = {
       address: 'address 3',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 2
+      categoryId: [2 ,1]
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const initialState = {
       address: 'address 4',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 3
+      categoryId: [3 ,1]
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ const initialState = {
       address: 'address 5',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 4
+      categoryId: [4 ,1]
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const initialState = {
       address: 'address 6',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 5
+      categoryId: [5 ,1]
     },
     {
       id: 6,
@@ -56,7 +56,7 @@ const initialState = {
       address: 'address 7',
       coordinates_lat: 31.768318,
       coordinates_lng: 35.213711,
-      categoryId: 6
+      categoryId: [6 ,1]
     }
   ]
 }

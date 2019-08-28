@@ -22,6 +22,7 @@ class AddCategory extends Component {
     if (this.state.name) {
       this.props.addCategory(this.state.name)
       this.notifySuccess()
+      this.props.history.goBack()
     } else {
       this.notifyError()
     }
@@ -37,22 +38,37 @@ class AddCategory extends Component {
 
   render () {
     return (
-      <li className='list-group-item'>
-        <div className='row'>
-          <div className='col-6'>
-            <input
-              type='text'
-              className='form-control'
-              onChange={e => this.onNameChange(e.target.value)}
-            />
+      <div>
+          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+            <span className="navbar-text">
+              Manage your categories &nbsp;
+            </span>
+            <ul className="nav navbar-nav ml-auto">
+              <li className="nav-item">
+                <button className='btn btn-success' onClick={this.onAdd.bind(this)}>
+                  Add Category
+                </button>
+                <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
+                  Back
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <div className='card'>
+            <div className='card-body'>
+                <div className='form-group'>
+                  <label>Name</label>
+                    <input
+                      type='text'
+                      className='form-control'
+                      onChange={e => this.onNameChange(e.target.value)}
+                    />
+                </div>
+            </div>
           </div>
-          <div className='col-6'>
-            <button className='btn btn-success' onClick={this.onAdd.bind(this)}>
-              Add category
-            </button>
-          </div>
+
         </div>
-      </li>
     )
   }
 }

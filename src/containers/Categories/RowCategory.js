@@ -12,9 +12,9 @@ class RowCategory extends Component {
     let canDelete = true
     this.props.locations.map(c => {
       if(c.categoryId === id) {
-        canDelete = false
-        return
+         canDelete = false
       }
+      return canDelete
     })
     if(canDelete){
       return this.props.deleteCategory(id)

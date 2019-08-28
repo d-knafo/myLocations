@@ -1,28 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Select from 'react-select';
 import Map from './Map'
 
 class ViewLocation extends Component {
-  UNSAFE_componentWillMount () {
+  constructor (props) {
+    super(props)
     if ("vibrate" in navigator) {
   	// vibration API supported
       navigator.vibrate(1000);
     }
 
+    const categories = this.props.categories
     const id =  parseInt(this.props.match.params.id)
     const initObj = this.props.locations.find(e => e.id === id)
-    this.setState({
+    const selectedOptionArr = initObj.categoryId.map(e => {
+      return categories.filter(c => c.id === e)
+    })
+    this.state = {
       name: initObj.name,
       address: initObj.address,
       coordinates_lat: initObj.coordinates_lat,
       coordinates_lng: initObj.coordinates_lng,
-      categoryId: initObj.categoryId
-    })
+      categoryId: initObj.categoryId,
+      selectedOption: selectedOptionArr.map(o => o[0]),
+    }
   }
 
   render () {
     return (
+
+      <div>
+        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <span className="navbar-text">
+            View location
+          </span>
+          <ul className="nav navbar-nav ml-auto">
+            <li className="nav-item">
+              <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
+                Back
+              </button>
+            </li>
+          </ul>
+        </nav>
+
       <div className='card'>
         <div className='card-body'>
           <div className='row'>
@@ -77,6 +99,17 @@ class ViewLocation extends Component {
                     ))}
                 </select>
               </div>
+              <div className='form-group'>
+                 <label> Category v2 </label>
+                   <Select
+                     value={this.state.selectedOption}
+                     options={this.props.categories}
+                     isMulti={true}
+                     getOptionValue={option => option.id}
+                     getOptionLabel={option => option.name}
+                     isDisabled={true}
+                   />
+              </div>
             </div>
             <div className='col-6'>
               <Map coordinates={{lat: this.state.coordinates_lat, lng: this.state.coordinates_lng }} />
@@ -84,6 +117,7 @@ class ViewLocation extends Component {
           </div>
 
         </div>
+      </div>
       </div>
     )
   }

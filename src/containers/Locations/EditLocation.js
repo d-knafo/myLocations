@@ -3,25 +3,40 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Select from 'react-select';
 import { editLocation } from '../../redux/actions/locations'
 
 class EditLocation extends Component {
-  UNSAFE_componentWillMount() {
+  constructor(props) {
+    super(props)
     const id = parseInt(this.props.match.params.id)
+    const categories = this.props.categories
     const initObj = this.props.locations.find(e => e.id === id)
-    this.setState({
+    const selectedOptionArr = initObj.categoryId.map(e => {
+      return categories.filter(c => c.id === e)
+    })
+
+    this.state = {
       name: initObj.name,
       id: initObj.id,
       address: initObj.address,
       coordinates_lat: initObj.coordinates_lat,
       coordinates_lng: initObj.coordinates_lng,
-      categoryId: initObj.categoryId
-    })
+      categoryId: initObj.categoryId,
+      selectedOption: selectedOptionArr.map(o => o[0]),
+    }
   }
 
   onNameChange(value, field) {
     this.setState({ [field]: value })
   }
+
+  onChangeCategories = selectedOption => {
+    console.log(selectedOption);
+     this.setState({ selectedOption });
+     let ids = selectedOption.map(o => o.id)
+     this.setState({categoryId: ids})
+   };
 
   onSave() {
     if (
@@ -58,6 +73,23 @@ class EditLocation extends Component {
 
   render() {
     return (
+      <div>
+        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <span className="navbar-text">
+            Edit Category
+          </span>
+          <ul className="nav navbar-nav ml-auto">
+            <li className="nav-item">
+              <button className='btn btn-success' onClick={this.onSave.bind(this)}>
+                Save
+              </button>
+              <button className='btn btn-warning ml-2' onClick={this.props.history.goBack}>
+                Back
+              </button>
+            </li>
+          </ul>
+        </nav>
+
       <div className="card">
         <div className="card-body">
           <div className="form-group">
@@ -113,10 +145,22 @@ class EditLocation extends Component {
               ))}
             </select>
           </div>
+          <div className='form-group'>
+             <label> Category v2 </label>
+               <Select
+                 value={this.state.selectedOption}
+                 onChange={this.onChangeCategories}
+                 options={this.props.categories}
+                 isMulti={true}
+                 getOptionValue={option => option.id}
+                 getOptionLabel={option => option.name}
+               />
+          </div>
           <button className="btn btn-success" onClick={this.onSave.bind(this)}>
             Save
           </button>
         </div>
+      </div>
       </div>
     )
   }

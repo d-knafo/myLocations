@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import RowLocations from './RowLocations'
-import AddLocation from './AddLocation'
 
 class Locations extends Component {
   constructor () {
@@ -17,11 +17,25 @@ class Locations extends Component {
   render () {
     return (
       <div>
+
+        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <span className="navbar-text">
+            Manage your Locations &nbsp;
+          </span>
+          <ul className="nav navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link
+                className='btn btn-success'
+                to='/location/new/'
+              >
+              Add new
+            </Link>
+            </li>
+          </ul>
+        </nav>
+
+
         <div className='row'>
-          <div className='col-sm'>
-            <h1> Add Location</h1>
-            <AddLocation />
-          </div>
           <div className='col-sm'>
             <h1> My Locations </h1>
             <form>
