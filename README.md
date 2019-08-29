@@ -1,1 +1,1 @@
-myLocations project
+myLocations React.js project 
